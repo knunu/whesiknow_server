@@ -52,7 +52,7 @@ class Api extends REST_Controller {
         // Check if there is user-data that user want to get
         if ($user->num_rows() > 0) {
             // Set the response and exit
-            $this->response($user->result_arrays(), REST_Controller::HTTP_OK);
+            $this->response($user->result_array(), REST_Controller::HTTP_OK);
         } else {
             // Set the response and exit
             $this->response([
