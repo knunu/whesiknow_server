@@ -78,8 +78,7 @@ class Api extends REST_Controller {
 
     public function user_put() {
         $condition = array(
-            'email' => $this->put('email'),
-            'login_group' => $this->put('login_group')
+            'id' => $this->put('id')
         );
 
         $new_value = array(
@@ -112,10 +111,9 @@ class Api extends REST_Controller {
         }
     }
 
-    public function user_delete($email, $login_group) {
+    public function user_delete($id) {
         $condition = array(
-            'email' => $email,
-            'login_group' => $login_group
+            'id' => $id
         );
 
         if ($this->api_model->delete(TABLE, $condition)) {
