@@ -10,7 +10,7 @@ define('TABLE', 'user');
  * Time: 오후 7:28
  */
 
-class api extends REST_Controller {
+class User extends REST_Controller {
 
     public function __construct() {
         // Construct the parent class
@@ -19,9 +19,9 @@ class api extends REST_Controller {
         $this->load->model('api_model');
     }
 
-    public function users_get() {
+    public function user_get() {
 
-        // Users from a data store e.g. database
+        // user from a data store e.g. database
         $condition = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group'),
@@ -37,12 +37,12 @@ class api extends REST_Controller {
         if (isset($condition['password'])) {
             $condition['password'] = password_hash($condition['password'], PASSWORD_BCRYPT);
         }
-        $users = $this->api_model->get(TABLE, $condition);
+        $user = $this->api_model->get(TABLE, $condition);
 
         // Check if there is user-data that user want to get
-        if ($users) {
+        if ($user) {
             // Set the response and exit
-            $this->response($users->result_arrays(), REST_Controller::HTTP_OK);
+            $this->response($user->result_arrays(), REST_Controller::HTTP_OK);
         } else {
             // Set the response and exit
             $this->response([
@@ -52,7 +52,7 @@ class api extends REST_Controller {
         }
     }
 
-    public function users_put() {
+    public function user_put() {
         $new_value = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group'),
@@ -73,7 +73,7 @@ class api extends REST_Controller {
         }
     }
 
-    public function users_post() {
+    public function user_post() {
         $condition = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group')
@@ -105,7 +105,7 @@ class api extends REST_Controller {
         }
     }
 
-    public function users_delete() {
+    public function user_delete() {
         $condition = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group')
@@ -124,7 +124,7 @@ class api extends REST_Controller {
         }
     }
 
-    public function themes_get() {
+    public function theme_get() {
 
     }
 
