@@ -2,7 +2,7 @@
 
 // This can be removed if you use __autoload() in config.php OR use Modular Extensions
 require APPPATH . '/libraries/REST_Controller.php';
-define(TABLE, 'user');
+define('TABLE', 'user');
 
 /**
  * Author : Knunu
