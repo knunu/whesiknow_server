@@ -59,6 +59,9 @@ class Api extends REST_Controller {
             'password' => $this->post('password'),
             'name' => $this->post('name')
         );
+        if (!$new_value['password']) {
+            $new_value['password'] = password_hash($new_value['password'], PASSWORD_BCRYPT);
+        }
 
         if ($this->api_model->post(TABLE, $new_value)) {
             $this->response([
@@ -90,6 +93,10 @@ class Api extends REST_Controller {
             if (!$value) {
                 unset($new_value[$column]);
             }
+        }
+
+        if (isset($new_value['password'])) {
+            $new_value['password'] = password_hash($new_value['password'], PASSWORD_BCRYPT);
         }
 
         if ($this->api_model->put(TABLE, $condition, $new_value)) {
