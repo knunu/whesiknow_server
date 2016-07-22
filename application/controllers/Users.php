@@ -10,7 +10,7 @@ define('TABLE', 'user');
  * Time: 오후 7:28
  */
 
-class User extends REST_Controller {
+class Users extends REST_Controller {
 
     public function __construct() {
         // Construct the parent class
@@ -19,7 +19,7 @@ class User extends REST_Controller {
         $this->load->model('api_model');
     }
 
-    public function user_get() {
+    public function users_get() {
 
         // user from a data store e.g. database
         $condition = array(
@@ -37,12 +37,12 @@ class User extends REST_Controller {
         if (isset($condition['password'])) {
             $condition['password'] = password_hash($condition['password'], PASSWORD_BCRYPT);
         }
-        $user = $this->api_model->get(TABLE, $condition);
+        $users = $this->api_model->get(TABLE, $condition);
 
         // Check if there is user-data that user want to get
-        if ($user) {
+        if ($users) {
             // Set the response and exit
-            $this->response($user->result_arrays(), REST_Controller::HTTP_OK);
+            $this->response($users->result_arrays(), REST_Controller::HTTP_OK);
         } else {
             // Set the response and exit
             $this->response([
@@ -52,7 +52,7 @@ class User extends REST_Controller {
         }
     }
 
-    public function user_put() {
+    public function users_put() {
         $new_value = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group'),
@@ -73,7 +73,7 @@ class User extends REST_Controller {
         }
     }
 
-    public function user_post() {
+    public function users_post() {
         $condition = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group')
@@ -105,7 +105,7 @@ class User extends REST_Controller {
         }
     }
 
-    public function user_delete() {
+    public function users_delete() {
         $condition = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group')
