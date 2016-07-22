@@ -53,6 +53,7 @@ class Api_model extends CI_Model
     }
 
     public function delete($table, $condition = array()) {
+        print_r($condition);
         return $this->db->delete($table, $condition);
     }
 }
