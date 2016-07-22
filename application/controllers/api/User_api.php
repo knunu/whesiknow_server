@@ -10,7 +10,7 @@ define('TABLE', 'user');
  * Time: 오후 7:28
  */
 
-class User extends REST_Controller {
+class User_api extends REST_Controller {
 
     public function __construct() {
         // Construct the parent class
