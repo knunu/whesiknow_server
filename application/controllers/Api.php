@@ -54,10 +54,10 @@ class Api extends REST_Controller {
 
     public function user_put() {
         $new_value = array(
-            'email' => $this->get('email'),
-            'login_group' => $this->get('login_group'),
-            'password' => $this->get('password'),
-            'name' => $this->get('name')
+            'email' => $this->put('email'),
+            'login_group' => $this->put('login_group'),
+            'password' => $this->put('password'),
+            'name' => $this->put('name')
         );
 
         if ($this->api_model->put(TABLE, $new_value)) {
@@ -75,15 +75,15 @@ class Api extends REST_Controller {
 
     public function user_post() {
         $condition = array(
-            'email' => $this->get('email'),
-            'login_group' => $this->get('login_group')
+            'email' => $this->post('email'),
+            'login_group' => $this->post('login_group')
         );
 
         $new_value = array(
-            'password' => $this->get('password'),
-            'name' => $this->get('name'),
-            'profile_image' => $this->get('profile_image'),
-            'thumbnail_image' => $this->get('thumbnail_image')
+            'password' => $this->post('password'),
+            'name' => $this->post('name'),
+            'profile_image' => $this->post('profile_image'),
+            'thumbnail_image' => $this->post('thumbnail_image')
         );
 
         foreach ($new_value as $column => $value) {
@@ -107,8 +107,8 @@ class Api extends REST_Controller {
 
     public function user_delete() {
         $condition = array(
-            'email' => $this->get('email'),
-            'login_group' => $this->get('login_group')
+            'email' => $this->delete('email'),
+            'login_group' => $this->delete('login_group')
         );
 
         if ($this->api_model->delete(TABLE, $condition)) {
