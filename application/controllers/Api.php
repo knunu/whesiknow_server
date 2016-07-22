@@ -40,7 +40,7 @@ class Api extends REST_Controller {
         $user = $this->api_model->get(TABLE, $condition);
 
         // Check if there is user-data that user want to get
-        if ($user) {
+        if ($user->num_rows() > 0) {
             // Set the response and exit
             $this->response($user->result_arrays(), REST_Controller::HTTP_OK);
         } else {
