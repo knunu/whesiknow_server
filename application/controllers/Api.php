@@ -133,10 +133,8 @@ class Api extends REST_Controller {
     }
 
     public function theme_get() {
-
     }
 
     public function shop_get() {
-
     }
 }
