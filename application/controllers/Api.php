@@ -20,14 +20,12 @@ class Api extends REST_Controller {
     }
 
     public function user_get() {
-
         // user from a data store e.g. database
         $condition = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group'),
             'password' => $this->get('password')
         );
-
         foreach ($condition as $column => $value) {
             if (!$value) {
                 unset($condition[$column]);
@@ -35,7 +33,18 @@ class Api extends REST_Controller {
         }
 
         if (isset($condition['password'])) {
-            $condition['password'] = password_hash($condition['password'], PASSWORD_BCRYPT);
+            $input_password = $condition['password'];
+            unset($condition['password']);
+            $row_result = $this->api_model->get(TABLE, $condition, 'password')->row();
+
+            if (!isset($row_result) || !password_verify($input_password, $row_result->password)) {
+                // Set the response and exit
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'No users were found'
+                ], REST_Controller::HTTP_NOT_FOUND);
+                return;
+            }
         }
         print_r($condition);
         $user = $this->api_model->get(TABLE, $condition);
