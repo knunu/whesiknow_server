@@ -49,11 +49,22 @@ class Api_model extends CI_Model
     }
 
     public function post($table, $new_value = array()) {
-        return $this->db->insert($table, $new_value);
+        $this->db->insert($table, $new_value);
+
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function delete($table, $condition = array()) {
-        print_r($condition);
-        return $this->db->delete($table, $condition);
+        $this->db->delete($table, $condition);
+
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

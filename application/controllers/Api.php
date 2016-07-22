@@ -112,10 +112,10 @@ class Api extends REST_Controller {
         }
     }
 
-    public function user_delete() {
+    public function user_delete($email, $login_group) {
         $condition = array(
-            'email' => $this->get('email'),
-            'login_group' => $this->get('login_group')
+            'email' => $email,
+            'login_group' => $login_group
         );
 
         if ($this->api_model->delete(TABLE, $condition)) {
