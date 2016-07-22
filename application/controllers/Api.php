@@ -78,15 +78,15 @@ class Api extends REST_Controller {
 
     public function user_put() {
         $condition = array(
-            'email' => $this->post('email'),
-            'login_group' => $this->post('login_group')
+            'email' => $this->put('email'),
+            'login_group' => $this->put('login_group')
         );
 
         $new_value = array(
-            'password' => $this->post('password'),
-            'name' => $this->post('name'),
-            'profile_image' => $this->post('profile_image'),
-            'thumbnail_image' => $this->post('thumbnail_image')
+            'password' => $this->put('password'),
+            'name' => $this->put('name'),
+            'profile_image' => $this->put('profile_image'),
+            'thumbnail_image' => $this->put('thumbnail_image')
         );
 
         foreach ($new_value as $column => $value) {
@@ -132,10 +132,8 @@ class Api extends REST_Controller {
     }
 
     public function theme_get() {
-
     }
 
     public function shop_get() {
-
     }
 }
