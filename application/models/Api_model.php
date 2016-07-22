@@ -34,8 +34,7 @@ class Api_model extends CI_Model
         foreach($new_value as $column => $value) {
             $query .= " $column = '$value',";
         }
-        substr_replace($query, '', -1);
-        $query .= " WHERE 1=1";
+        $query = substr_replace($query, ' WHERE 1=1', -1);
 
         foreach($condition as $column => $value) {
             $query .= " AND $column = '$value'";
