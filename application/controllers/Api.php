@@ -28,7 +28,6 @@ class Api extends REST_Controller {
             'password' => $this->get('password')
         );
 
-        print_r($condition);
         foreach ($condition as $column => $value) {
             if (!$value) {
                 unset($condition[$column]);
@@ -38,6 +37,7 @@ class Api extends REST_Controller {
         if (isset($condition['password'])) {
             $condition['password'] = password_hash($condition['password'], PASSWORD_BCRYPT);
         }
+        print_r($condition);
         $user = $this->api_model->get(TABLE, $condition);
 
         // Check if there is user-data that user want to get
