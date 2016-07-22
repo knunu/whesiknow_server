@@ -68,7 +68,6 @@ class Api extends REST_Controller {
             'password' => $this->post('password'),
             'name' => $this->post('name')
         );
-        print_r($new_value);
 
         if ($new_value['password']) {
             $new_value['password'] = password_hash($new_value['password'], PASSWORD_BCRYPT);
