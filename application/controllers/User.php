@@ -2,6 +2,7 @@
 
 // This can be removed if you use __autoload() in config.php OR use Modular Extensions
 require APPPATH . '/libraries/REST_Controller.php';
+define(TABLE, 'user');
 
 /**
  * Author : Knunu
@@ -27,12 +28,16 @@ class api extends REST_Controller {
             'password' => $this->get('password')
         );
 
-        if (count($condition['password'] != 0)) {
-//            $condition['password'] = password_hash($condition['password'], )
-        } else {
-            unset($condition['password']);
+        foreach ($condition as $column => $value) {
+            if (!$value) {
+                unset($condition[$column]);
+            }
         }
-        $users = $this->api_model->get('user', $condition);
+
+        if (isset($condition['password'])) {
+            $condition['password'] = password_hash($condition['password'], PASSWORD_BCRYPT);
+        }
+        $users = $this->api_model->get(TABLE, $condition);
 
         // Check if there is user-data that user want to get
         if ($users) {
@@ -48,20 +53,75 @@ class api extends REST_Controller {
     }
 
     public function users_put() {
-
         $new_value = array(
             'email' => $this->get('email'),
             'login_group' => $this->get('login_group'),
-            'password' => $this->get('password')
-        )
+            'password' => $this->get('password'),
+            'name' => $this->get('name')
+        );
+
+        if ($this->api_model->put(TABLE, $new_value)) {
+            $this->response([
+                'status' => True,
+                'message' => 'Success'
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => False,
+                'message' => 'Failed'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 
     public function users_post() {
+        $condition = array(
+            'email' => $this->get('email'),
+            'login_group' => $this->get('login_group')
+        );
 
+        $new_value = array(
+            'password' => $this->get('password'),
+            'name' => $this->get('name'),
+            'profile_image' => $this->get('profile_image'),
+            'thumbnail_image' => $this->get('thumbnail_image')
+        );
+
+        foreach ($new_value as $column => $value) {
+            if (!$value) {
+                unset($new_value[$column]);
+            }
+        }
+
+        if ($this->api_model->post(TABLE, $condition, $new_value)) {
+            $this->response([
+                'status' => True,
+                'message' => 'Success'
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => False,
+                'message' => 'Failed'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 
     public function users_delete() {
+        $condition = array(
+            'email' => $this->get('email'),
+            'login_group' => $this->get('login_group')
+        );
 
+        if ($this->api_model->delete(TABLE, $condition)) {
+            $this->response([
+                'status' => True,
+                'message' => 'Success'
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => False,
+                'message' => 'Failed'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 
     public function themes_get() {
