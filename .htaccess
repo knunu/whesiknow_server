@@ -1,8 +1,8 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteCond $1 !^(index\.php|images|captcha|data|include|uploads|robots\.txt)
+  #RewriteCond $1 !^(index\.php|images|captcha|data|include|uploads|robots\.txt)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ 어떤폴더/저런폴더/이런폴더/index.php/$1 [L]
+  RewriteRule ^(.*)$ /whesiknow/index.php/$1 [L]
 </IfModule>
