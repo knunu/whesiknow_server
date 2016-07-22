@@ -25,7 +25,7 @@ class Api_model extends CI_Model
         return $this->db->query($query);
     }
 
-    public function post($table, $condition = array(), $new_value = array()) {
+    public function put($table, $condition = array(), $new_value = array()) {
         $query = "
             UPDATE $table
                SET
@@ -49,7 +49,7 @@ class Api_model extends CI_Model
         }
     }
 
-    public function put($table, $new_value = array()) {
+    public function post($table, $new_value = array()) {
         return $this->db->insert($table, $new_value);
     }
 
