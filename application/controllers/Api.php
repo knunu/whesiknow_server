@@ -28,6 +28,7 @@ class Api extends REST_Controller {
             'password' => $this->get('password')
         );
 
+        print_r($condition);
         foreach ($condition as $column => $value) {
             if (!$value) {
                 unset($condition[$column]);
