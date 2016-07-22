@@ -46,7 +46,6 @@ class Api extends REST_Controller {
                 return;
             }
         }
-        print_r($condition);
         $user = $this->api_model->get(TABLE, $condition);
 
         // Check if there is user-data that user want to get
@@ -69,6 +68,8 @@ class Api extends REST_Controller {
             'password' => $this->post('password'),
             'name' => $this->post('name')
         );
+        print_r($new_value);
+
         if ($new_value['password']) {
             $new_value['password'] = password_hash($new_value['password'], PASSWORD_BCRYPT);
         }
