@@ -75,7 +75,7 @@ class Api extends REST_Controller {
 
         if ($this->api_model->post(TABLE, $new_value)) {
             $this->response(
-                $this->api_model->get(TABLE, $new_value, 'id, email, name')->row()
+                $this->api_model->get(TABLE, $new_value, 'id, email, name')->row_array()
             , REST_Controller::HTTP_OK);
         } else {
             $this->response([
