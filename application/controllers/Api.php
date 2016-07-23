@@ -74,9 +74,10 @@ class Api extends REST_Controller {
         }
 
         if ($this->api_model->post(TABLE, $new_value)) {
-            $this->response(
-                $this->api_model->get(TABLE, $new_value, 'id, email, name')->row_array()
-            , REST_Controller::HTTP_OK);
+            $this->response([
+                'status' => True,
+                'message' => 'Success'
+            ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
                 'status' => False,
