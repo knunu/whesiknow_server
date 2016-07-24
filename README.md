@@ -41,7 +41,7 @@
 
 ---
 
-* [플레이 스토어 링크](-)
+* [플레이 스토어 링크](https://play.google.com/store/apps/details?id=com.knunu.android.whesiknow)
 * [회식나우 안드로이드 애플리케이션 Github](https://github.com/knunu/whesiknow_android)
 
 
