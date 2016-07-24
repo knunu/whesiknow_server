@@ -42,6 +42,6 @@
 ---
 
 * [플레이 스토어 링크](-)
-* [회식나우 안드로이드 클라이언트](-)
+* [회식나우 안드로이드 클라이언트](https://github.com/knunu/whesiknow_android)
 
 
